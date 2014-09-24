@@ -26,13 +26,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.provision "shell", path: "provisioning/fetch-templates.sh", args: ["/vagrant/provisioning/roles/common/templates/config","v0.0.5"]
 
-  config.vm.provision "ansible" do |ansible|
+  config.vm.provision "shell", path: "provision.sh"
+  
+  #config.vm.provision "ansible" do |ansible|
     #ansible.verbose = "vvvv"
     #ansible.tags=["load_apps"]
     
     # Use the second line in place of the first for DSTU2 builds
-    ansible.playbook = "provisioning/smart-on-fhir-servers.yml"
+    #ansible.playbook = "provisioning/smart-on-fhir-servers.yml"
     #ansible.playbook = "provisioning/smart-on-fhir-servers-dstu2.yml"
-  end
+  #end
 
 end
